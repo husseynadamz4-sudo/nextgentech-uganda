@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextGenTech Uganda | Version 2 (Liquid Glass)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            glass: {
+              lightBg: '#f8fafc',
+              darkBg: '#090d16',
+              borderLight: 'rgba(255, 255, 255, 0.4)',
+              borderDark: 'rgba(255, 255, 255, 0.08)',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script>
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
+  <style>
+    /* Liquid Glass Custom Styles */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    }
+    .dark .glass-panel {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+    .dark .glass-card {
+      background: rgba(30, 41, 59, 0.5);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+  </style>
+</head>
+<body class="bg-slate-100 dark:bg-[#090d16] text-slate-900 dark:text-slate-100 font-sans antialiased transition-colors duration-500 relative overflow-x-hidden selection:bg-blue-600 selection:text-white">
+
+  <!-- Ambient Liquid Gradient Blobs -->
+  <div class="fixed top-0 left-1/4 -translate-x-1/2 w-[500px] h-[500px] bg-blue-400/30 dark:bg-blue-600/20 rounded-full blur-[120px] pointer-events-none -z-10 animate-pulse"></div>
+  <div class="fixed top-1/3 right-10 w-[450px] h-[450px] bg-purple-400/20 dark:bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+  <div class="fixed bottom-10 left-1/3 w-[600px] h-[600px] bg-cyan-400/20 dark:bg-cyan-600/10 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+
+  <!-- Header / Liquid Navigation -->
+  <header class="sticky top-4 z-50 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="glass-panel rounded-full px-6 h-16 flex items-center justify-between transition-all">
+      <div class="flex items-center space-x-2">
+        <span class="text-lg font-black tracking-tighter uppercase">NextGenTech <span class="text-blue-600 dark:text-blue-400">Uganda</span></span>
+      </div>
+
+      <!-- Desktop Links -->
+      <nav class="hidden md:flex space-x-8 text-sm font-semibold text-slate-700 dark:text-slate-300">
+        <a href="#services" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Services</a>
+        <a href="#projects" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Deployments</a>
+        <a href="#contact" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Contact</a>
+      </nav>
+
+      <div class="flex items-center space-x-3">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" aria-label="Toggle Theme" class="p-2 rounded-full glass-card hover:bg-white/80 dark:hover:bg-slate-800 transition">
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" />
+          </svg>
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-slate-700" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+          </svg>
+        </button>
+
+        <a href="#contact" class="hidden sm:inline-block bg-blue-600/90 hover:bg-blue-600 text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full backdrop-blur-md shadow-lg shadow-blue-500/20 transition">
+          Get Started
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" aria-label="Open Mobile Menu" class="md:hidden p-2 rounded-xl glass-card text-slate-700 dark:text-slate-200">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden glass-panel mt-2 rounded-2xl p-6 space-y-4">
+      <a href="#services" class="mobile-link block font-semibold text-slate-800 dark:text-slate-200">Services</a>
+      <a href="#projects" class="mobile-link block font-semibold text-slate-800 dark:text-slate-200">Deployments</a>
+      <a href="#contact" class="mobile-link block font-semibold text-slate-800 dark:text-slate-200">Contact</a>
+      <a href="#contact" class="mobile-link block text-center bg-blue-600 text-white font-bold py-3 rounded-xl shadow-lg">Get Started</a>
+    </div>
+  </header>
+
+  <!-- Main Hero Section -->
+  <main class="max-w-7xl mx-auto px-6 pt-16 pb-24 space-y-28">
+
+    <section class="space-y-12">
+      <div class="max-w-4xl space-y-6">
+        <div class="inline-flex items-center space-x-2 glass-card px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          <span>Kampala, Uganda</span>
+          <span>•</span>
+          <span>Liquid Glass Edition v2</span>
+        </div>
+        <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[0.95]">
+          Where technology drives impact with substance.
+        </h1>
+        <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
+          We deploy, customize, and manage robust enterprise management platforms, clinical healthcare workflows, and educational infrastructure tailored for modern institutions.
+        </p>
+      </div>
+
+      <!-- Glass Featured Media Card -->
+      <div class="glass-panel p-4 rounded-[36px] overflow-hidden shadow-2xl relative group">
+        <div class="h-[420px] md:h-[520px] rounded-[28px] overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1800&q=80" 
+               alt="Collaboration" 
+               class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent flex items-end p-8 md:p-12">
+            <div class="text-white space-y-2">
+              <span class="text-xs font-bold uppercase tracking-widest text-blue-400">Enterprise Infrastructure</span>
+              <p class="text-2xl md:text-3xl font-extrabold">Building scalable digital backbones for specialized institutions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission & Grid -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+          Most organizations struggle with rigid legacy software.<br />Your operations demand flexibility.
+        </h2>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+          From advanced electronic medical records and laboratory diagnostic tracking systems to comprehensive academic administrative platforms, we bridge the gap between complex digital requirements and real-world execution.
+        </p>
+        <div class="glass-card p-6 rounded-2xl space-y-1">
+          <p class="font-bold text-lg text-blue-600 dark:text-blue-400">Secure & Scalable Frameworks</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Containerized server environments built for high availability and performance.</p>
+        </div>
+      </div>
+
+      <!-- Liquid Image Cards -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="glass-panel p-2 rounded-2xl">
+          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" class="rounded-xl object-cover h-60 w-full" alt="Server Setup" />
+        </div>
+        <div class="glass-panel p-2 rounded-2xl mt-6">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80" class="rounded-xl object-cover h-60 w-full" alt="Data Systems" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Services (3 Glass Pillars) -->
+    <section id="services" class="space-y-16">
+      <div class="max-w-2xl space-y-4">
+        <span class="text-xs font-bold tracking-widest text-blue-600 dark:text-blue-400 uppercase">Core Capabilities</span>
+        <h2 class="text-4xl font-black tracking-tight">Engineered for performance.</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="glass-panel p-8 rounded-3xl space-y-6 hover:-translate-y-2 transition duration-300">
+          <span class="text-xs font-black text-blue-600 dark:text-blue-400 glass-card px-3 py-1.5 rounded-lg">01</span>
+          <h3 class="text-2xl font-black tracking-tight">Health & Lab Systems</h3>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+            Deployment and deep customization of clinical records management and laboratory information architectures to optimize diagnostics and hospital workflows.
+          </p>
+        </div>
+
+        <div class="glass-panel p-8 rounded-3xl space-y-6 hover:-translate-y-2 transition duration-300">
+          <span class="text-xs font-black text-blue-600 dark:text-blue-400 glass-card px-3 py-1.5 rounded-lg">02</span>
+          <h3 class="text-2xl font-black tracking-tight">EdTech & Administration</h3>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+            Installation and administration of integrated school management frameworks and digital learning environments for modern academic institutions.
+          </p>
+        </div>
+
+        <div class="glass-panel p-8 rounded-3xl space-y-6 hover:-translate-y-2 transition duration-300">
+          <span class="text-xs font-black text-blue-600 dark:text-blue-400 glass-card px-3 py-1.5 rounded-lg">03</span>
+          <h3 class="text-2xl font-black tracking-tight">Infrastructure & DevOps</h3>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+            Advanced containerization, secure server environments, virtual networking, system hardening, and automated database backup configurations.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Featured Deployments (Dark Liquid Section) -->
+  <section id="projects" class="py-24 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 space-y-16">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div class="space-y-4">
+          <span class="text-xs font-bold uppercase tracking-widest text-blue-500">Portfolio</span>
+          <h2 class="text-4xl md:text-5xl font-black tracking-tight">Featured Deployments</h2>
+        </div>
+        <p class="text-slate-500 dark:text-slate-400 max-w-md text-sm">
+          Delivering reliable digital infrastructure across medical laboratories, academic institutions, and enterprise networks in Uganda.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="glass-panel p-10 rounded-3xl space-y-6">
+          <div class="text-xs font-bold text-blue-500 uppercase tracking-wider">Healthcare Information Systems</div>
+          <h3 class="text-2xl font-bold">Hospital & Diagnostic Lab Automation</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Integrated electronic medical record workflows combined with automated laboratory information management systems to reduce reporting turnarounds.
+          </p>
+        </div>
+        <div class="glass-panel p-10 rounded-3xl space-y-6">
+          <div class="text-xs font-bold text-blue-500 uppercase tracking-wider">Institutional E-Learning & Admin</div>
+          <h3 class="text-2xl font-bold">Academic Management Portals</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Synchronized student administration platforms with remote learning modules for seamless academic tracking and examinations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Glass Contact Section -->
+  <section id="contact" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="glass-panel p-10 md:p-16 rounded-[40px] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <span class="text-xs font-bold uppercase tracking-widest bg-blue-600 text-white px-4 py-1.5 rounded-full shadow-lg">Get In Touch</span>
+        <h2 class="text-4xl md:text-5xl font-black tracking-tight">Ready to upgrade your institution's infrastructure?</h2>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+          Partner with NextGenTech Uganda for reliable, custom-tailored software deployments and expert technical consultancy.
+        </p>
+      </div>
+
+      <div class="glass-card p-8 rounded-3xl space-y-4">
+        <h3 class="text-2xl font-black">Send a Request</h3>
+        <form class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you! Proposal request sent.');">
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Your Name</label>
+            <input type="text" required class="w-full glass-card rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nkajja Hussein" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Email Address</label>
+            <input type="email" required class="w-full glass-card rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="name@example.com" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Project Details</label>
+            <textarea rows="3" required class="w-full glass-card rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tell us about your system requirements..."></textarea>
+          </div>
+          <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition">
+            Submit Proposal Request
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200/50 dark:border-slate-800/50 py-10 text-center text-sm text-slate-500">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>&copy; 2026 NextGenTech Uganda. All rights reserved.</p>
+      <p>Kampala, Uganda • Liquid Glass Edition</p>
+    </div>
+  </footer>
+
+  <!-- Theme & Mobile Scripts -->
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+
+    function updateIcons() {
+      if (document.documentElement.classList.contains('dark')) {
+        lightIcon.classList.remove('hidden');
+        darkIcon.classList.add('hidden');
+      } else {
+        lightIcon.classList.add('hidden');
+        darkIcon.classList.remove('hidden');
+      }
+    }
+
+    updateIcons();
+
+    themeToggleBtn.addEventListener('click', function() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      updateIcons();
+    });
+
+    // Mobile Menu
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  </script>
+
+</body>
+</html>
